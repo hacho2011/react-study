@@ -1,6 +1,8 @@
+@value makerGreen from '../../common/colors.css';
+
 .header {
   height: 50px;
-  background-color: tomato;
+  background-color: makerGreen;
 }
 
 .logo {

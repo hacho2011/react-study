@@ -1,9 +1,35 @@
 import React from "react";
-// import { GoogleAuthProvider } from "firebase/auth";
-// const provider = new GoogleAuthProvider();
+import { useNavigate } from "react-router-dom";
+import Header from "../header/header";
+import Footer from "../footer/footer";
+import styles from "./login.module.css";
 
-const login = () => {
-  return <h1>Login</h1>;
+const Login = ({ authService }) => {
+  const navigate = useNavigate();
+  const goToMaker = (userId) => {
+    console.log(userId);
+    navigate("/maker", { state: { id: userId } });
+  };
+  const onLogin = (event) => {
+    authService
+      .login(event.currentTarget.textContent)
+      .then((data) => goToMaker(data.user.uid));
+  };
+
+  return (
+    <section>
+      <Header />
+      <ul>
+        <li>
+          <button onClick={onLogin}>Google</button>
+        </li>
+        <li>
+          <button onClick={onLogin}>Github</button>
+        </li>
+      </ul>
+      <Footer />
+    </section>
+  );
 };
 
-export default login;
+export default Login;
