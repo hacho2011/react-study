@@ -12,7 +12,6 @@ function App({ authService }) {
           <Route path="/" element={<Login authService={authService} />} exact />
           <Route path="/maker" element={<Maker />} />
         </Routes>
-        <p className={styles.asdf}>asdasd</p>
       </BrowserRouter>
     </div>
   );

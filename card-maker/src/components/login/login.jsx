@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../header/header";
 import Footer from "../footer/footer";
+import styles from "./login.module.css";
 
 const Login = ({ authService }) => {
   const navigate = useNavigate();
@@ -16,16 +17,23 @@ const Login = ({ authService }) => {
   };
 
   return (
-    <section>
+    <section className={styles.login}>
       <Header />
-      <ul>
-        <li>
-          <button onClick={onLogin}>Google</button>
-        </li>
-        <li>
-          <button onClick={onLogin}>Github</button>
-        </li>
-      </ul>
+      <section>
+        <h1>Login</h1>
+        <ul className={styles.list}>
+          <li className={styles.item}>
+            <button className={styles.button} onClick={onLogin}>
+              Google
+            </button>
+          </li>
+          <li className={styles.item}>
+            <button className={styles.button} onClick={onLogin}>
+              Github
+            </button>
+          </li>
+        </ul>
+      </section>
       <Footer />
     </section>
   );
