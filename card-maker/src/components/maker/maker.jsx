@@ -5,8 +5,8 @@ import Footer from "../footer/footer";
 import Header from "../header/header";
 import Preview from "../preview/preview";
 import styles from "./maker.module.css";
-
-const Maker = ({ authService }) => {
+import ImageUploader from "../../service/image_uploader";
+const Maker = ({ FileInput, authService }) => {
   const [cards, setCards] = useState({
     1: {
       id: "1",
@@ -70,15 +70,29 @@ const Maker = ({ authService }) => {
       return updated;
     });
   };
+
+  const uploadImage = (card, file) => {
+    const imageUploader = new ImageUploader();
+    imageUploader.upload(file);
+    card = { ...card, fileName: file.name };
+    setCards((cards) => {
+      const updated = { ...cards };
+      updated[card.id] = card;
+      return updated;
+    });
+  };
+
   return (
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
         <Editor
+          FileInput={FileInput}
           cards={cards}
           addCard={createOrUpdateCard}
           updateCard={createOrUpdateCard}
           deleteCard={deleteCard}
+          uploadImage={uploadImage}
         />
         <Preview cards={cards} />
       </div>
